@@ -1,0 +1,1683 @@
+[
+  {
+    "id": "ocwai",
+    "certCode": "OCO-AI",
+    "title": "Offensive Cyber Operations with AI",
+    "shortTitle": "OCWAI",
+    "description": "Master AI-assisted offensive security — LLM abuse, prompt injection, agentic AI exploitation, and automating red-team workflows with AI agents.",
+    "domain": "ai-security",
+    "domainLabel": "AI Security",
+    "team": [
+      "red"
+    ],
+    "securityType": [
+      "offensive"
+    ],
+    "difficulty": "advanced",
+    "difficultyScore": 3,
+    "internalTopics": [
+      "llm",
+      "ai-red-team",
+      "prompt-attacks",
+      "agentic-ai",
+      "offensive-automation",
+      "llm-jailbreaking",
+      "ai-agent-abuse"
+    ],
+    "tags": [
+      "ai",
+      "red-team",
+      "automation",
+      "llm",
+      "agentic"
+    ],
+    "relatedDomains": [
+      "web-security",
+      "evasion-exploitation"
+    ],
+    "learningPath": [
+      "ocwai"
+    ],
+    "technologies": [
+      "python",
+      "linux"
+    ],
+    "tools": [
+      "custom-ai-agents",
+      "llm-apis"
+    ],
+    "price": 149,
+    "popularityScore": 88,
+    "isPopular": true,
+    "isNew": false,
+    "isBestSeller": false,
+    "url": "https://cyberwarfare.live/product/offensive-cyber-operations-with-ai-oco-ai/",
+    "icon": "🤖"
+  },
+  {
+    "id": "arta",
+    "certCode": "C|ARTA",
+    "title": "API Red Team Analyst",
+    "shortTitle": "ARTA",
+    "description": "Deep-dive API security testing: JWT attacks, GraphQL injection, IDOR chains, OAuth abuse, and advanced API fuzzing techniques.",
+    "domain": "web-security",
+    "domainLabel": "Web Security",
+    "team": [
+      "red"
+    ],
+    "securityType": [
+      "offensive"
+    ],
+    "difficulty": "intermediate",
+    "difficultyScore": 2,
+    "internalTopics": [
+      "jwt",
+      "graphql",
+      "idor",
+      "oauth",
+      "api-fuzzing",
+      "rest-attacks",
+      "broken-auth"
+    ],
+    "tags": [
+      "api",
+      "red-team",
+      "web",
+      "jwt",
+      "graphql"
+    ],
+    "relatedDomains": [
+      "ethical-hacking",
+      "red-team"
+    ],
+    "learningPath": [
+      "wrta",
+      "arta"
+    ],
+    "technologies": [
+      "linux",
+      "python",
+      "burp-suite"
+    ],
+    "tools": [
+      "burp-suite",
+      "postman",
+      "ffuf",
+      "jwt-tool"
+    ],
+    "price": 99,
+    "popularityScore": 87,
+    "isPopular": true,
+    "isNew": false,
+    "isBestSeller": false,
+    "url": "https://cyberwarfare.live/product/api-red-team-analyst-api-rta/",
+    "icon": "🔌"
+  },
+  {
+    "id": "wrta",
+    "certCode": "C|WRTA",
+    "title": "Web Red Team Analyst",
+    "shortTitle": "WRTA",
+    "description": "Foundational web exploitation — XSS, SQL injection, CSRF, RCE, and authentication bypass in real-world web application targets.",
+    "domain": "web-security",
+    "domainLabel": "Web Security",
+    "team": [
+      "red"
+    ],
+    "securityType": [
+      "offensive"
+    ],
+    "difficulty": "beginner",
+    "difficultyScore": 1,
+    "internalTopics": [
+      "xss",
+      "sqli",
+      "csrf",
+      "rce",
+      "auth-bypass",
+      "file-upload",
+      "path-traversal"
+    ],
+    "tags": [
+      "web-security",
+      "red-team",
+      "xss",
+      "sqli"
+    ],
+    "relatedDomains": [
+      "ethical-hacking",
+      "evasion-exploitation"
+    ],
+    "learningPath": [
+      "wrta",
+      "arta"
+    ],
+    "technologies": [
+      "linux",
+      "burp-suite",
+      "php"
+    ],
+    "tools": [
+      "burp-suite",
+      "sqlmap",
+      "nikto",
+      "dirbuster"
+    ],
+    "price": 69,
+    "popularityScore": 82,
+    "isPopular": false,
+    "isNew": false,
+    "isBestSeller": false,
+    "url": "https://cyberwarfare.live/product/web-red-team-analyst-web-rta/",
+    "icon": "🕸️"
+  },
+  {
+    "id": "adrts",
+    "certCode": "C|ADRTS",
+    "title": "AD Red Team Specialist",
+    "shortTitle": "ADRTS",
+    "description": "Advanced Active Directory attacks — Kerberoasting, ADCS abuse, BloodHound enumeration, delegation abuse, and full domain takeover.",
+    "domain": "red-team",
+    "domainLabel": "Red Team",
+    "team": [
+      "red"
+    ],
+    "securityType": [
+      "offensive"
+    ],
+    "difficulty": "advanced",
+    "difficultyScore": 3,
+    "internalTopics": [
+      "kerberoasting",
+      "adcs",
+      "bloodhound",
+      "delegation-abuse",
+      "domain-takeover",
+      "pass-the-ticket",
+      "dcsync",
+      "golden-ticket"
+    ],
+    "tags": [
+      "ad",
+      "red-team",
+      "windows",
+      "kerberos",
+      "bloodhound"
+    ],
+    "relatedDomains": [
+      "ethical-hacking",
+      "evasion-exploitation"
+    ],
+    "learningPath": [
+      "wrta",
+      "adrts"
+    ],
+    "technologies": [
+      "windows",
+      "active-directory",
+      "powershell"
+    ],
+    "tools": [
+      "bloodhound",
+      "impacket",
+      "mimikatz",
+      "rubeus",
+      "powerview"
+    ],
+    "price": 119,
+    "popularityScore": 90,
+    "isPopular": true,
+    "isNew": false,
+    "isBestSeller": false,
+    "url": "https://cyberwarfare.live/product/active-directory-red-team-specialist-ad-rts/",
+    "icon": "🏰"
+  },
+  {
+    "id": "lms",
+    "certCode": "C|ELMS",
+    "title": "Lateral Movement Specialist",
+    "shortTitle": "LMS",
+    "description": "Enterprise lateral movement mastery — pivoting techniques, C2 frameworks, credential theft, pass-the-hash, and post-exploitation workflows.",
+    "domain": "red-team",
+    "domainLabel": "Red Team",
+    "team": [
+      "red"
+    ],
+    "securityType": [
+      "offensive"
+    ],
+    "difficulty": "advanced",
+    "difficultyScore": 3,
+    "internalTopics": [
+      "pivoting",
+      "c2",
+      "credential-theft",
+      "pass-the-hash",
+      "wmi-attacks",
+      "dcom",
+      "port-forwarding"
+    ],
+    "tags": [
+      "red-team",
+      "pivoting",
+      "lateral-movement",
+      "c2"
+    ],
+    "relatedDomains": [
+      "evasion-exploitation"
+    ],
+    "learningPath": [
+      "adrts",
+      "lms"
+    ],
+    "technologies": [
+      "windows",
+      "linux",
+      "cobalt-strike"
+    ],
+    "tools": [
+      "cobalt-strike",
+      "metasploit",
+      "chisel",
+      "ligolo"
+    ],
+    "price": 129,
+    "popularityScore": 89,
+    "isPopular": true,
+    "isNew": false,
+    "isBestSeller": false,
+    "url": "https://cyberwarfare.live/product/certified-enterprise-lateral-movement-specialist-celms/",
+    "icon": "🔀"
+  },
+  {
+    "id": "rta",
+    "certCode": "C|RTA",
+    "title": "Red Team Analyst",
+    "shortTitle": "RTA",
+    "description": "Red team fundamentals — enumeration methodology, payload crafting, privilege escalation, and basic recon for enterprise environments.",
+    "domain": "red-team",
+    "domainLabel": "Red Team",
+    "team": [
+      "red"
+    ],
+    "securityType": [
+      "offensive"
+    ],
+    "difficulty": "beginner",
+    "difficultyScore": 1,
+    "internalTopics": [
+      "enumeration",
+      "payloads",
+      "privilege-escalation",
+      "recon",
+      "network-scanning",
+      "service-exploitation"
+    ],
+    "tags": [
+      "red-team",
+      "offensive-security",
+      "enumeration",
+      "privesc"
+    ],
+    "relatedDomains": [
+      "ethical-hacking"
+    ],
+    "learningPath": [
+      "rta",
+      "adrts",
+      "lms"
+    ],
+    "technologies": [
+      "linux",
+      "windows",
+      "bash"
+    ],
+    "tools": [
+      "nmap",
+      "metasploit",
+      "linpeas",
+      "winpeas"
+    ],
+    "price": 59,
+    "popularityScore": 85,
+    "isPopular": true,
+    "isNew": false,
+    "isBestSeller": true,
+    "url": "https://cyberwarfare.live/product/red-team-analyst-crta/",
+    "icon": "🎯"
+  },
+  {
+    "id": "rts",
+    "certCode": "C|RTS",
+    "title": "Red Team Specialist",
+    "shortTitle": "RTS",
+    "description": "Intermediate red team operations — phishing campaign development, payload engineering, C2 infrastructure, and adversarial simulation.",
+    "domain": "red-team",
+    "domainLabel": "Red Team",
+    "team": [
+      "red"
+    ],
+    "securityType": [
+      "offensive"
+    ],
+    "difficulty": "intermediate",
+    "difficultyScore": 2,
+    "internalTopics": [
+      "phishing",
+      "payload-dev",
+      "infra-ops",
+      "c2",
+      "macro-dev",
+      "vba",
+      "hta-payloads"
+    ],
+    "tags": [
+      "red-team",
+      "infrastructure",
+      "phishing",
+      "c2"
+    ],
+    "relatedDomains": [
+      "devops-security"
+    ],
+    "learningPath": [
+      "rta",
+      "rts"
+    ],
+    "technologies": [
+      "linux",
+      "cobalt-strike",
+      "python"
+    ],
+    "tools": [
+      "cobalt-strike",
+      "gophish",
+      "empire",
+      "covenant"
+    ],
+    "price": 89,
+    "popularityScore": 86,
+    "isPopular": true,
+    "isNew": false,
+    "isBestSeller": true,
+    "url": "https://cyberwarfare.live/product/red-team-specialist-crts/",
+    "icon": "🧪"
+  },
+  {
+    "id": "rtid",
+    "certCode": "C|RTID",
+    "title": "Red Team Infra Dev",
+    "shortTitle": "RTID",
+    "description": "Red team infrastructure engineering — Terraform/Docker-based C2 hosting, redirectors, domain fronting, and covert cloud infrastructure.",
+    "domain": "devops-security",
+    "domainLabel": "DevOps Security",
+    "team": [
+      "red"
+    ],
+    "securityType": [
+      "offensive"
+    ],
+    "difficulty": "advanced",
+    "difficultyScore": 3,
+    "internalTopics": [
+      "terraform",
+      "docker",
+      "cloud-infra",
+      "c2-hosting",
+      "domain-fronting",
+      "redirectors",
+      "ssl-certificates"
+    ],
+    "tags": [
+      "red-team",
+      "devops",
+      "infrastructure",
+      "terraform"
+    ],
+    "relatedDomains": [
+      "cloud-security",
+      "kubernetes-security"
+    ],
+    "learningPath": [
+      "rts",
+      "rtid"
+    ],
+    "technologies": [
+      "terraform",
+      "docker",
+      "linux",
+      "aws"
+    ],
+    "tools": [
+      "terraform",
+      "docker",
+      "nginx",
+      "lets-encrypt"
+    ],
+    "price": 109,
+    "popularityScore": 83,
+    "isPopular": false,
+    "isNew": false,
+    "isBestSeller": true,
+    "url": "https://cyberwarfare.live/product/red-team-infra-developer/",
+    "icon": "🏗️"
+  },
+  {
+    "id": "sco",
+    "certCode": "C|SCO",
+    "title": "Stealth Cyber Operator",
+    "shortTitle": "SCO",
+    "description": "Advanced evasion operations — EDR bypass, syscall-level stealth, payload obfuscation, and anti-forensic techniques for covert operations.",
+    "domain": "evasion-exploitation",
+    "domainLabel": "Evasion & Exploitation",
+    "team": [
+      "red",
+      "purple"
+    ],
+    "securityType": [
+      "offensive"
+    ],
+    "difficulty": "advanced",
+    "difficultyScore": 3,
+    "internalTopics": [
+      "edr-evasion",
+      "syscall",
+      "stealth",
+      "payload-obfuscation",
+      "anti-forensics",
+      "sleep-masking",
+      "unhooking"
+    ],
+    "tags": [
+      "evasion",
+      "stealth",
+      "edr",
+      "syscalls"
+    ],
+    "relatedDomains": [
+      "red-team"
+    ],
+    "learningPath": [
+      "rta",
+      "sco"
+    ],
+    "technologies": [
+      "windows",
+      "c",
+      "c++",
+      "assembly"
+    ],
+    "tools": [
+      "pe-bear",
+      "x64dbg",
+      "custom-loaders"
+    ],
+    "price": 139,
+    "popularityScore": 91,
+    "isPopular": true,
+    "isNew": false,
+    "isBestSeller": false,
+    "url": "https://cyberwarfare.live/product/stealth-cyber-operator-csco/",
+    "icon": "👻"
+  },
+  {
+    "id": "btf",
+    "certCode": "C|BTF",
+    "title": "Blue Team Fundamentals",
+    "shortTitle": "BTF",
+    "description": "Entry-level defensive operations — SIEM basics, log analysis, incident response workflows, and threat detection fundamentals in enterprise SOC environments.",
+    "domain": "blue-team",
+    "domainLabel": "Blue Team",
+    "team": [
+      "blue"
+    ],
+    "securityType": [
+      "defensive"
+    ],
+    "difficulty": "beginner",
+    "difficultyScore": 1,
+    "internalTopics": [
+      "siem",
+      "logs",
+      "incident-response",
+      "threat-detection",
+      "soc-operations",
+      "alert-triage"
+    ],
+    "tags": [
+      "blue-team",
+      "soc",
+      "siem",
+      "incident-response"
+    ],
+    "relatedDomains": [
+      "cloud-security"
+    ],
+    "learningPath": [
+      "btf",
+      "cda"
+    ],
+    "technologies": [
+      "windows",
+      "linux",
+      "splunk"
+    ],
+    "tools": [
+      "splunk",
+      "elastic",
+      "sysmon",
+      "wireshark"
+    ],
+    "price": 49,
+    "popularityScore": 78,
+    "isPopular": false,
+    "isNew": false,
+    "isBestSeller": false,
+    "url": "https://cyberwarfare.live/product/blue-team-fundamentals-btf/",
+    "icon": "🛡️"
+  },
+  {
+    "id": "cda",
+    "certCode": "C|CDA",
+    "title": "Cyber Defence Analyst",
+    "shortTitle": "CDA",
+    "description": "SOC analyst-level threat hunting, IOC analysis, malware behavioral analysis, and advanced SIEM use-case development.",
+    "domain": "blue-team",
+    "domainLabel": "Blue Team",
+    "team": [
+      "blue"
+    ],
+    "securityType": [
+      "defensive"
+    ],
+    "difficulty": "intermediate",
+    "difficultyScore": 2,
+    "internalTopics": [
+      "siem",
+      "threat-hunting",
+      "ioc-analysis",
+      "malware-analysis",
+      "yara",
+      "sigma-rules"
+    ],
+    "tags": [
+      "soc",
+      "blue-team",
+      "threat-hunting",
+      "malware"
+    ],
+    "relatedDomains": [
+      "purple-team"
+    ],
+    "learningPath": [
+      "btf",
+      "cda"
+    ],
+    "technologies": [
+      "windows",
+      "linux",
+      "elastic"
+    ],
+    "tools": [
+      "elastic-siem",
+      "yara",
+      "remnux",
+      "flare-vm"
+    ],
+    "price": 79,
+    "popularityScore": 84,
+    "isPopular": false,
+    "isNew": false,
+    "isBestSeller": true,
+    "url": "https://cyberwarfare.live/product/cyber-defence-analyst-ccda/",
+    "icon": "🔍"
+  },
+  {
+    "id": "ptf",
+    "certCode": "C|PTF",
+    "title": "Purple Team Fundamentals",
+    "shortTitle": "PTF",
+    "description": "Introduction to purple teaming — detection engineering principles, attack simulation methodology, and bridging red/blue collaboration.",
+    "domain": "purple-team",
+    "domainLabel": "Purple Team",
+    "team": [
+      "purple"
+    ],
+    "securityType": [
+      "both"
+    ],
+    "difficulty": "beginner",
+    "difficultyScore": 1,
+    "internalTopics": [
+      "detection-engineering",
+      "attack-simulation",
+      "soc-collaboration",
+      "atomic-red-team",
+      "mitre-attack"
+    ],
+    "tags": [
+      "purple-team",
+      "detection",
+      "mitre"
+    ],
+    "relatedDomains": [
+      "blue-team",
+      "red-team"
+    ],
+    "learningPath": [
+      "ptf",
+      "pta"
+    ],
+    "technologies": [
+      "windows",
+      "linux"
+    ],
+    "tools": [
+      "atomic-red-team",
+      "caldera",
+      "sigma"
+    ],
+    "price": 59,
+    "popularityScore": 77,
+    "isPopular": false,
+    "isNew": false,
+    "isBestSeller": false,
+    "url": "https://cyberwarfare.live/product/purple-teaming-fundamentals_c_edition/",
+    "icon": "🔮"
+  },
+  {
+    "id": "pia",
+    "certCode": "C|PIA",
+    "title": "Process Injection Analyst",
+    "shortTitle": "PIA",
+    "description": "Advanced Windows process injection techniques — DLL injection, syscall-based execution, thread hijacking, and EDR evasion from both attack and detection perspectives.",
+    "domain": "evasion-exploitation",
+    "domainLabel": "Evasion & Exploitation",
+    "team": [
+      "purple",
+      "red"
+    ],
+    "securityType": [
+      "both"
+    ],
+    "difficulty": "advanced",
+    "difficultyScore": 3,
+    "internalTopics": [
+      "dll-injection",
+      "syscalls",
+      "edr-evasion",
+      "thread-hijacking",
+      "apc-injection",
+      "process-hollowing",
+      "reflective-loading"
+    ],
+    "tags": [
+      "windows",
+      "evasion",
+      "injection",
+      "purple-team"
+    ],
+    "relatedDomains": [
+      "purple-team",
+      "red-team"
+    ],
+    "learningPath": [
+      "ptf",
+      "pia"
+    ],
+    "technologies": [
+      "windows",
+      "c",
+      "c++"
+    ],
+    "tools": [
+      "x64dbg",
+      "processhacker",
+      "pe-bear"
+    ],
+    "price": 129,
+    "popularityScore": 90,
+    "isPopular": true,
+    "isNew": false,
+    "isBestSeller": false,
+    "url": "https://cyberwarfare.live/product/process-injection-analyst-cpia/",
+    "icon": "💉"
+  },
+  {
+    "id": "pta",
+    "certCode": "C|PTA",
+    "title": "Purple Team Analyst",
+    "shortTitle": "PTA",
+    "description": "MITRE ATT&CK-driven detection rule development, threat emulation, and adversarial simulation to strengthen SOC capabilities.",
+    "domain": "purple-team",
+    "domainLabel": "Purple Team",
+    "team": [
+      "purple"
+    ],
+    "securityType": [
+      "both"
+    ],
+    "difficulty": "intermediate",
+    "difficultyScore": 2,
+    "internalTopics": [
+      "mitre-attack",
+      "detection-rules",
+      "attack-emulation",
+      "sigma-rules",
+      "detection-as-code"
+    ],
+    "tags": [
+      "purple-team",
+      "mitre",
+      "detection-rules",
+      "sigma"
+    ],
+    "relatedDomains": [
+      "blue-team",
+      "red-team"
+    ],
+    "learningPath": [
+      "ptf",
+      "pta",
+      "pia"
+    ],
+    "technologies": [
+      "windows",
+      "linux",
+      "elastic"
+    ],
+    "tools": [
+      "mitre-navigator",
+      "sigma",
+      "elastic-siem",
+      "caldera"
+    ],
+    "price": 89,
+    "popularityScore": 86,
+    "isPopular": true,
+    "isNew": false,
+    "isBestSeller": true,
+    "url": "https://cyberwarfare.live/product/purple-team-analyst-cpta/",
+    "icon": "⚗️"
+  },
+  {
+    "id": "azrts",
+    "certCode": "C|AZRTS",
+    "title": "Azure Red Team Specialist",
+    "shortTitle": "AZRTS",
+    "description": "Azure-specific offensive operations — Azure AD abuse, Managed Identity exploitation, cloud pivoting, and tenant-wide compromise.",
+    "domain": "cloud-security",
+    "domainLabel": "Cloud Security",
+    "team": [
+      "red"
+    ],
+    "securityType": [
+      "offensive"
+    ],
+    "difficulty": "advanced",
+    "difficultyScore": 3,
+    "internalTopics": [
+      "azure-ad",
+      "managed-identities",
+      "cloud-pivoting",
+      "entra-id",
+      "azure-rbac-abuse",
+      "arm-exploitation"
+    ],
+    "tags": [
+      "azure",
+      "cloud",
+      "red-team",
+      "entra-id"
+    ],
+    "relatedDomains": [
+      "devops-security",
+      "kubernetes-security"
+    ],
+    "learningPath": [
+      "mcrta",
+      "azrts"
+    ],
+    "technologies": [
+      "azure",
+      "powershell",
+      "python"
+    ],
+    "tools": [
+      "stormspotter",
+      "azurehound",
+      "roadtools",
+      "powerzure"
+    ],
+    "price": 119,
+    "popularityScore": 89,
+    "isPopular": true,
+    "isNew": true,
+    "isBestSeller": false,
+    "url": "https://cyberwarfare.live/product/azure-red-team-specialist-azrts/",
+    "icon": "☁️"
+  },
+  {
+    "id": "mcrta",
+    "certCode": "C|MCRTA",
+    "title": "Multi-Cloud Red Team Analyst",
+    "shortTitle": "MCRTA",
+    "description": "Entry-level multi-cloud offensive security — AWS IAM abuse, Azure misconfigurations, GCP privilege escalation, and cross-cloud exploitation basics.",
+    "domain": "cloud-security",
+    "domainLabel": "Cloud Security",
+    "team": [
+      "red"
+    ],
+    "securityType": [
+      "offensive"
+    ],
+    "difficulty": "beginner",
+    "difficultyScore": 1,
+    "internalTopics": [
+      "aws-iam",
+      "azure",
+      "gcp",
+      "cloud-exploitation",
+      "cloud-enumeration",
+      "s3-buckets",
+      "cloud-metadata"
+    ],
+    "tags": [
+      "cloud",
+      "red-team",
+      "aws",
+      "azure",
+      "gcp"
+    ],
+    "relatedDomains": [
+      "devops-security",
+      "kubernetes-security"
+    ],
+    "learningPath": [
+      "mcbta",
+      "mcrta",
+      "hmcrts"
+    ],
+    "technologies": [
+      "aws",
+      "azure",
+      "gcp",
+      "python"
+    ],
+    "tools": [
+      "aws-cli",
+      "az-cli",
+      "gcloud",
+      "pacu",
+      "cloudfox"
+    ],
+    "price": 79,
+    "popularityScore": 85,
+    "isPopular": true,
+    "isNew": false,
+    "isBestSeller": false,
+    "url": "https://cyberwarfare.live/product/multi-cloud-red-team-analyst-mcrta/",
+    "icon": "🌐"
+  },
+  {
+    "id": "hmcrts",
+    "certCode": "C|HMCRTS",
+    "title": "Hybrid Multi-Cloud Red Team Specialist",
+    "shortTitle": "HMCRTS",
+    "description": "Hybrid identity attacks spanning on-prem AD and multi-cloud — cross-cloud pivoting, persistent cloud access, and hybrid infrastructure compromise.",
+    "domain": "cloud-security",
+    "domainLabel": "Cloud Security",
+    "team": [
+      "red",
+      "purple"
+    ],
+    "securityType": [
+      "offensive",
+      "both"
+    ],
+    "difficulty": "advanced",
+    "difficultyScore": 3,
+    "internalTopics": [
+      "hybrid-identity",
+      "cross-cloud-pivoting",
+      "cloud-persistence",
+      "ad-connect-abuse",
+      "federation-attacks"
+    ],
+    "tags": [
+      "hybrid-cloud",
+      "offensive",
+      "identity",
+      "multi-cloud"
+    ],
+    "relatedDomains": [
+      "devops-security",
+      "purple-team"
+    ],
+    "learningPath": [
+      "mcrta",
+      "hmcrts"
+    ],
+    "technologies": [
+      "azure",
+      "aws",
+      "active-directory",
+      "powershell"
+    ],
+    "tools": [
+      "azurehound",
+      "roadtools",
+      "pacu",
+      "bloodhound"
+    ],
+    "price": 139,
+    "popularityScore": 88,
+    "isPopular": true,
+    "isNew": false,
+    "isBestSeller": true,
+    "url": "https://cyberwarfare.live/product/hybrid-multi-cloud-red-team-specialist-chmrts/",
+    "icon": "🔗"
+  },
+  {
+    "id": "grts",
+    "certCode": "C|GRTS",
+    "title": "Google Red Team Specialist",
+    "shortTitle": "GRTS",
+    "description": "GCP-focused offensive security — GCP IAM privilege escalation, service account abuse, GKE exploitation, and Google Workspace attacks.",
+    "domain": "cloud-security",
+    "domainLabel": "Cloud Security",
+    "team": [
+      "red"
+    ],
+    "securityType": [
+      "offensive"
+    ],
+    "difficulty": "intermediate",
+    "difficultyScore": 2,
+    "internalTopics": [
+      "gcp-iam",
+      "service-accounts",
+      "gke",
+      "workspace-attacks",
+      "gcp-privilege-escalation"
+    ],
+    "tags": [
+      "gcp",
+      "cloud",
+      "google-workspace"
+    ],
+    "relatedDomains": [
+      "kubernetes-security"
+    ],
+    "learningPath": [
+      "mcrta",
+      "grts"
+    ],
+    "technologies": [
+      "gcp",
+      "kubernetes",
+      "python"
+    ],
+    "tools": [
+      "gcloud",
+      "kubectl",
+      "gcphound"
+    ],
+    "price": 99,
+    "popularityScore": 82,
+    "isPopular": false,
+    "isNew": false,
+    "isBestSeller": false,
+    "url": "https://cyberwarfare.live/product/google-cloud-red-team-specialist-cgrts/",
+    "icon": "🔵"
+  },
+  {
+    "id": "awrts",
+    "certCode": "C|AWRTS",
+    "title": "AWS Red Team Specialist",
+    "shortTitle": "AWRTS",
+    "description": "AWS offensive operations — IAM privilege escalation, Lambda attack chains, S3 misconfiguration exploitation, and AWS persistence techniques.",
+    "domain": "cloud-security",
+    "domainLabel": "Cloud Security",
+    "team": [
+      "red"
+    ],
+    "securityType": [
+      "offensive"
+    ],
+    "difficulty": "intermediate",
+    "difficultyScore": 2,
+    "internalTopics": [
+      "iam-abuse",
+      "lambda-attacks",
+      "s3-misconfigurations",
+      "aws-persistence",
+      "ec2-exploitation",
+      "ssrf-aws"
+    ],
+    "tags": [
+      "aws",
+      "red-team",
+      "iam",
+      "lambda"
+    ],
+    "relatedDomains": [
+      "devops-security"
+    ],
+    "learningPath": [
+      "mcrta",
+      "awrts"
+    ],
+    "technologies": [
+      "aws",
+      "python",
+      "linux"
+    ],
+    "tools": [
+      "pacu",
+      "aws-cli",
+      "cloudfox",
+      "truffelhog"
+    ],
+    "price": 99,
+    "popularityScore": 84,
+    "isPopular": false,
+    "isNew": false,
+    "isBestSeller": false,
+    "url": "https://cyberwarfare.live/product/aws-cloud-red-team-specialist-carts/",
+    "icon": "🟠"
+  },
+  {
+    "id": "mcbta",
+    "certCode": "C|MCBTA",
+    "title": "Multi Cloud Blue Team Analyst",
+    "shortTitle": "MCBTA",
+    "description": "Cloud defensive operations — SIEM for multi-cloud, Azure Defender, AWS GuardDuty, cloud-native incident response, and cloud monitoring strategies.",
+    "domain": "cloud-security",
+    "domainLabel": "Cloud Security",
+    "team": [
+      "blue"
+    ],
+    "securityType": [
+      "defensive"
+    ],
+    "difficulty": "beginner",
+    "difficultyScore": 1,
+    "internalTopics": [
+      "siem",
+      "cloud-monitoring",
+      "azure-defender",
+      "incident-response",
+      "aws-guardduty",
+      "cloudtrail",
+      "cloud-forensics"
+    ],
+    "tags": [
+      "blue-team",
+      "cloud",
+      "siem",
+      "incident-response"
+    ],
+    "relatedDomains": [
+      "purple-team",
+      "devops-security"
+    ],
+    "learningPath": [
+      "btf",
+      "mcbta",
+      "cga"
+    ],
+    "technologies": [
+      "azure",
+      "aws",
+      "splunk",
+      "elastic"
+    ],
+    "tools": [
+      "azure-defender",
+      "aws-guardduty",
+      "splunk",
+      "elastic-siem"
+    ],
+    "price": 69,
+    "popularityScore": 79,
+    "isPopular": false,
+    "isNew": false,
+    "isBestSeller": false,
+    "url": "https://cyberwarfare.live/product/multi-cloud-blue-team-analyst-mcbta/",
+    "icon": "🔵"
+  },
+  {
+    "id": "opo",
+    "certCode": "C|OPO",
+    "title": "Offensive Phishing Operations",
+    "shortTitle": "OPO",
+    "description": "Advanced phishing infrastructure — Evilginx2 AiTM proxies, credential harvesting, domain spoofing, DKIM/DMARC bypass, and social engineering campaigns.",
+    "domain": "ethical-hacking",
+    "domainLabel": "Ethical Hacking",
+    "team": [
+      "red"
+    ],
+    "securityType": [
+      "offensive"
+    ],
+    "difficulty": "intermediate",
+    "difficultyScore": 2,
+    "internalTopics": [
+      "credential-harvesting",
+      "evilginx",
+      "adversary-in-the-middle",
+      "email-spoofing",
+      "social-engineering",
+      "dkim-bypass",
+      "mfa-bypass"
+    ],
+    "tags": [
+      "phishing",
+      "red-team",
+      "social-engineering",
+      "evilginx"
+    ],
+    "relatedDomains": [
+      "red-team",
+      "evasion-exploitation"
+    ],
+    "learningPath": [
+      "rta",
+      "opo",
+      "rts"
+    ],
+    "technologies": [
+      "smtp",
+      "dns",
+      "linux"
+    ],
+    "tools": [
+      "evilginx",
+      "gophish",
+      "modlishka"
+    ],
+    "price": 79,
+    "popularityScore": 91,
+    "isPopular": true,
+    "isNew": true,
+    "isBestSeller": false,
+    "url": "https://cyberwarfare.live/product/offensive-phishing-operator-copo/",
+    "icon": "🎣"
+  },
+  {
+    "id": "csa",
+    "certCode": "C|CSA",
+    "title": "Cyber Security Analyst",
+    "shortTitle": "CSA",
+    "description": "Core enterprise security monitoring — SIEM operations, threat analysis, log correlation, network security fundamentals, and incident response triage.",
+    "domain": "ethical-hacking",
+    "domainLabel": "Ethical Hacking",
+    "team": [
+      "blue"
+    ],
+    "securityType": [
+      "defensive"
+    ],
+    "difficulty": "beginner",
+    "difficultyScore": 1,
+    "internalTopics": [
+      "siem",
+      "threat-analysis",
+      "incident-response",
+      "log-analysis",
+      "network-security",
+      "packet-analysis"
+    ],
+    "tags": [
+      "soc",
+      "security",
+      "blue-team",
+      "siem"
+    ],
+    "relatedDomains": [
+      "blue-team",
+      "cloud-security"
+    ],
+    "learningPath": [
+      "btf",
+      "csa",
+      "cda"
+    ],
+    "technologies": [
+      "windows",
+      "linux",
+      "splunk"
+    ],
+    "tools": [
+      "wireshark",
+      "sysmon",
+      "kibana",
+      "splunk"
+    ],
+    "price": 49,
+    "popularityScore": 89,
+    "isPopular": true,
+    "isNew": false,
+    "isBestSeller": false,
+    "url": "https://cyberwarfare.live/product/cyber-security-analyst-c3sa/",
+    "icon": "📊"
+  },
+  {
+    "id": "cse",
+    "certCode": "C|CSE",
+    "title": "Cyber Security Engineer",
+    "shortTitle": "CSE",
+    "description": "Enterprise security engineering — infrastructure hardening, network segmentation, IAM design, secure deployment pipelines, and security architecture.",
+    "domain": "ethical-hacking",
+    "domainLabel": "Ethical Hacking",
+    "team": [
+      "blue",
+      "purple"
+    ],
+    "securityType": [
+      "defensive",
+      "both"
+    ],
+    "difficulty": "intermediate",
+    "difficultyScore": 2,
+    "internalTopics": [
+      "hardening",
+      "network-security",
+      "security-architecture",
+      "iam",
+      "secure-deployment",
+      "zero-trust"
+    ],
+    "tags": [
+      "security-engineering",
+      "blue-team",
+      "hardening",
+      "zero-trust"
+    ],
+    "relatedDomains": [
+      "devops-security",
+      "cloud-security"
+    ],
+    "learningPath": [
+      "csa",
+      "cse",
+      "drta"
+    ],
+    "technologies": [
+      "linux",
+      "windows",
+      "docker",
+      "terraform"
+    ],
+    "tools": [
+      "ansible",
+      "terraform",
+      "cis-benchmark",
+      "nessus"
+    ],
+    "price": 89,
+    "popularityScore": 84,
+    "isPopular": true,
+    "isNew": true,
+    "isBestSeller": false,
+    "url": "https://cyberwarfare.live/product/cyber-security-engineer-cse/",
+    "icon": "⚙️"
+  },
+  {
+    "id": "rtci",
+    "certCode": "C|RTCI",
+    "title": "Red Team CredOps Infiltrator",
+    "shortTitle": "RTCI",
+    "description": "Credential operations mastery — LSASS dumping, Kerberoasting, NTLM relay attacks, token theft, and lateral movement via credential abuse.",
+    "domain": "evasion-exploitation",
+    "domainLabel": "Evasion & Exploitation",
+    "team": [
+      "red"
+    ],
+    "securityType": [
+      "offensive"
+    ],
+    "difficulty": "advanced",
+    "difficultyScore": 3,
+    "internalTopics": [
+      "credential-dumping",
+      "kerberoasting",
+      "ntlm-relay",
+      "token-theft",
+      "lateral-movement",
+      "lsass-attacks",
+      "dcsync"
+    ],
+    "tags": [
+      "credops",
+      "red-team",
+      "windows",
+      "ntlm",
+      "kerberos"
+    ],
+    "relatedDomains": [
+      "red-team",
+      "active-directory"
+    ],
+    "learningPath": [
+      "adrts",
+      "rtci",
+      "lms"
+    ],
+    "technologies": [
+      "windows",
+      "active-directory"
+    ],
+    "tools": [
+      "mimikatz",
+      "rubeus",
+      "bloodhound",
+      "impacket",
+      "crackmapexec"
+    ],
+    "price": 129,
+    "popularityScore": 95,
+    "isPopular": true,
+    "isNew": false,
+    "isBestSeller": true,
+    "url": "https://cyberwarfare.live/product/red-team-credops-infiltrator/",
+    "icon": "🔑"
+  },
+  {
+    "id": "scas",
+    "certCode": "C|SCAS",
+    "title": "Security Controls Attack Specialist",
+    "shortTitle": "SCAS",
+    "description": "Bypass enterprise security controls — AV evasion, EDR bypass, AMSI bypass, custom syscall techniques, and in-memory payload execution.",
+    "domain": "evasion-exploitation",
+    "domainLabel": "Evasion & Exploitation",
+    "team": [
+      "red",
+      "purple"
+    ],
+    "securityType": [
+      "offensive",
+      "both"
+    ],
+    "difficulty": "advanced",
+    "difficultyScore": 3,
+    "internalTopics": [
+      "av-bypass",
+      "edr-evasion",
+      "amsi-bypass",
+      "syscall-techniques",
+      "memory-evasion",
+      "pe-stomping",
+      "hollowing"
+    ],
+    "tags": [
+      "evasion",
+      "offensive-security",
+      "amsi",
+      "edr"
+    ],
+    "relatedDomains": [
+      "purple-team",
+      "red-team"
+    ],
+    "learningPath": [
+      "sco",
+      "scas",
+      "pia"
+    ],
+    "technologies": [
+      "windows",
+      "c",
+      "c++"
+    ],
+    "tools": [
+      "custom-loaders",
+      "syswhispers",
+      "pe-bear",
+      "x64dbg"
+    ],
+    "price": 149,
+    "popularityScore": 97,
+    "isPopular": true,
+    "isNew": false,
+    "isBestSeller": true,
+    "url": "https://cyberwarfare.live/product/security-controls-attack-specialist/",
+    "icon": "🛡️"
+  },
+  {
+    "id": "wirto",
+    "certCode": "C|WIRTO",
+    "title": "Win Internals Red Team Operator",
+    "shortTitle": "WIRTO",
+    "description": "Windows internals for attackers — kernel structures, process memory internals, syscall flows, DLL loading mechanisms, and low-level attack development.",
+    "domain": "evasion-exploitation",
+    "domainLabel": "Evasion & Exploitation",
+    "team": [
+      "red"
+    ],
+    "securityType": [
+      "offensive"
+    ],
+    "difficulty": "advanced",
+    "difficultyScore": 3,
+    "internalTopics": [
+      "windows-kernel",
+      "process-internals",
+      "syscalls",
+      "dll-loading",
+      "memory-management",
+      "peb-manipulation",
+      "nt-apis"
+    ],
+    "tags": [
+      "windows",
+      "red-team",
+      "internals",
+      "kernel"
+    ],
+    "relatedDomains": [
+      "red-team",
+      "exploit-development"
+    ],
+    "learningPath": [
+      "rta",
+      "wirto",
+      "edp"
+    ],
+    "technologies": [
+      "windows",
+      "c++"
+    ],
+    "tools": [
+      "x64dbg",
+      "windbg",
+      "processhacker",
+      "pe-bear"
+    ],
+    "price": 139,
+    "popularityScore": 93,
+    "isPopular": true,
+    "isNew": false,
+    "isBestSeller": false,
+    "url": "https://cyberwarfare.live/product/win-internals-red-team-operator/",
+    "icon": "🪟"
+  },
+  {
+    "id": "edp",
+    "certCode": "C|EDP",
+    "title": "Exploit Development Professional",
+    "shortTitle": "EDP",
+    "description": "Modern exploit development — stack/heap overflows, ROP chain construction, heap exploitation, shellcoding, and reverse engineering for vulnerability research.",
+    "domain": "evasion-exploitation",
+    "domainLabel": "Evasion & Exploitation",
+    "team": [
+      "red"
+    ],
+    "securityType": [
+      "offensive"
+    ],
+    "difficulty": "advanced",
+    "difficultyScore": 3,
+    "internalTopics": [
+      "buffer-overflow",
+      "rop",
+      "heap-exploitation",
+      "reverse-engineering",
+      "shellcoding",
+      "use-after-free",
+      "format-string"
+    ],
+    "tags": [
+      "exploit-dev",
+      "binary-exploitation",
+      "rop",
+      "reverse-engineering"
+    ],
+    "relatedDomains": [
+      "windows-internals",
+      "red-team"
+    ],
+    "learningPath": [
+      "wirto",
+      "edp"
+    ],
+    "technologies": [
+      "c",
+      "assembly",
+      "linux"
+    ],
+    "tools": [
+      "gdb",
+      "pwndbg",
+      "ghidra",
+      "pwntools",
+      "ida-pro"
+    ],
+    "price": 159,
+    "popularityScore": 94,
+    "isPopular": true,
+    "isNew": false,
+    "isBestSeller": false,
+    "url": "https://cyberwarfare.live/product/exploit-development-professional/",
+    "icon": "💥"
+  },
+  {
+    "id": "drta",
+    "certCode": "C|DRTA",
+    "title": "DevOps Red Team Analyst",
+    "shortTitle": "DRTA",
+    "description": "CI/CD pipeline attacks — Jenkins exploitation, Docker container breakout, secret extraction from pipelines, and supply chain attack techniques.",
+    "domain": "devops-security",
+    "domainLabel": "DevOps Security",
+    "team": [
+      "red"
+    ],
+    "securityType": [
+      "offensive"
+    ],
+    "difficulty": "intermediate",
+    "difficultyScore": 2,
+    "internalTopics": [
+      "cicd-exploitation",
+      "jenkins-attacks",
+      "docker-breakout",
+      "pipeline-compromise",
+      "secret-extraction",
+      "github-actions-abuse"
+    ],
+    "tags": [
+      "devops",
+      "red-team",
+      "cicd",
+      "docker",
+      "jenkins"
+    ],
+    "relatedDomains": [
+      "cloud-security",
+      "kubernetes-security"
+    ],
+    "learningPath": [
+      "rts",
+      "drta",
+      "k8srta"
+    ],
+    "technologies": [
+      "docker",
+      "jenkins",
+      "kubernetes",
+      "linux"
+    ],
+    "tools": [
+      "trivy",
+      "kubectl",
+      "trufflehog",
+      "gitjacker"
+    ],
+    "price": 109,
+    "popularityScore": 88,
+    "isPopular": true,
+    "isNew": false,
+    "isBestSeller": false,
+    "url": "https://cyberwarfare.live/product/devops-red-team-analyst/",
+    "icon": "🔧"
+  },
+  {
+    "id": "k8srta",
+    "certCode": "C|K8SRTA",
+    "title": "K8s Red Team Analyst",
+    "shortTitle": "K8SRTA",
+    "description": "Kubernetes offensive security — container escape, RBAC abuse, Kubelet attacks, pod exploitation, and full cluster compromise techniques.",
+    "domain": "kubernetes-security",
+    "domainLabel": "Kubernetes Security",
+    "team": [
+      "red"
+    ],
+    "securityType": [
+      "offensive"
+    ],
+    "difficulty": "advanced",
+    "difficultyScore": 3,
+    "internalTopics": [
+      "container-escape",
+      "rbac-abuse",
+      "kubelet-attacks",
+      "pod-exploitation",
+      "cluster-pivoting",
+      "etcd-attacks",
+      "service-account-abuse"
+    ],
+    "tags": [
+      "kubernetes",
+      "containers",
+      "red-team",
+      "rbac"
+    ],
+    "relatedDomains": [
+      "devops-security",
+      "cloud-security"
+    ],
+    "learningPath": [
+      "drta",
+      "k8srta"
+    ],
+    "technologies": [
+      "kubernetes",
+      "docker",
+      "linux"
+    ],
+    "tools": [
+      "kubectl",
+      "kube-hunter",
+      "falco",
+      "etcdctl"
+    ],
+    "price": 129,
+    "popularityScore": 92,
+    "isPopular": true,
+    "isNew": false,
+    "isBestSeller": false,
+    "url": "https://cyberwarfare.live/product/k8s-red-team-analyst/",
+    "icon": "⚓"
+  }
+]
