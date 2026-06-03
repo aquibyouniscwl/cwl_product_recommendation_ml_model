@@ -1,41 +1,90 @@
 from contextlib import asynccontextmanager
+
 from fastapi import FastAPI
+
 from src.api.routes import router
+
 from src.models.loader import ModelLoader
+
 from src.utils.logger import logger
 
-# FastAPI lifespan for startup/shutdown events
+
+# =====================================================
+# FASTAPI LIFESPAN
+# =====================================================
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Centralized model loading at startup
-    logger.info("FastAPI starting up: loading all ML models and encoders into memory...")
+
+    # -------------------------------------------------
+    # LOAD ML MODELS ON STARTUP
+    # -------------------------------------------------
+
+    logger.info(
+        "Loading ML recommendation models..."
+    )
+
     ModelLoader().load_all()
+
+    logger.info(
+        "All ML models loaded successfully."
+    )
+
     yield
-    logger.info("FastAPI shutting down...")
+
+    # -------------------------------------------------
+    # SHUTDOWN
+    # -------------------------------------------------
+
+    logger.info(
+        "Recommendation engine shutting down..."
+    )
+
+
+# =====================================================
+# CREATE FASTAPI APP
+# =====================================================
 
 app = FastAPI(
+
     title="CWL Recommendation Engine",
+
     version="1.0.0",
+
     description="""
-AI-powered cybersecurity course recommendation engine.
+ML-powered cybersecurity recommendation engine.
 
 Features:
-- ML similarity recommendations
-- Semantic reranking
+- Cosine similarity recommendations
+- KMeans clustering
+- Weighted semantic reranking
 - Multi-product cart intelligence
-- LLM validation
-- AI recommendation explanations
+- Learning path continuity
+- Offensive / defensive alignment
 """,
+
     lifespan=lifespan
 )
 
-# Register application routes
+
+# =====================================================
+# REGISTER ROUTES
+# =====================================================
+
 app.include_router(router)
 
-# Health check endpoint
+
+# =====================================================
+# HEALTH CHECK
+# =====================================================
+
 @app.get("/")
+
 def health_check():
+
     return {
+
         "status": "running",
+
         "service": "recommendation-engine"
     }

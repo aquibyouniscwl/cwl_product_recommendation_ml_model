@@ -1,29 +1,78 @@
-from fastapi import APIRouter, Depends
-from src.api.schemas import RecommendationRequest, RecommendationResponse
-from src.inference.recommendation_service import RecommendationService
+from fastapi import APIRouter
+from fastapi import Depends
+
+from src.api.schemas import (
+    RecommendationRequest,
+    RecommendationResponse
+)
+
+from src.inference.recommendation_service import (
+    RecommendationService
+)
+
+
+# =====================================================
+# CREATE ROUTER
+# =====================================================
 
 router = APIRouter()
 
-# Dependency injection helper
-def get_recommendation_service() -> RecommendationService:
+
+# =====================================================
+# DEPENDENCY INJECTION
+# =====================================================
+
+def get_recommendation_service():
+
     return RecommendationService()
 
+
+# =====================================================
+# RECOMMENDATION ENDPOINT
+# =====================================================
+
 @router.post(
+
     "/recommend",
+
     response_model=RecommendationResponse,
-    summary="Get course recommendations",
-    description="Generates AI-powered hybrid recommendations for a user based on their cart and enrolled courses."
+
+    summary="Get cybersecurity course recommendations",
+
+    description="""
+Generates ML-powered cybersecurity recommendations
+based on cart products and enrolled products.
+"""
 )
+
 def recommend_products(
+
     request: RecommendationRequest,
-    service: RecommendationService = Depends(get_recommendation_service)
-):
-    """
-    HTTP POST endpoint to generate cybersecurity course recommendations.
-    """
-    result = service.get_recommendations(
-        cart_products=request.cartProducts,
-        enrolled_products=request.enrolledProducts,
-        top_k=request.topK
+
+    service: RecommendationService = Depends(
+        get_recommendation_service
     )
+
+):
+
+    # -------------------------------------------------
+    # GENERATE RECOMMENDATIONS
+    # -------------------------------------------------
+
+    result = service.get_recommendations(
+
+        cart_products=
+        request.cartProducts,
+
+        enrolled_products=
+        request.enrolledProducts,
+
+        top_k=
+        request.topK
+    )
+
+    # -------------------------------------------------
+    # RETURN RESPONSE
+    # -------------------------------------------------
+
     return result

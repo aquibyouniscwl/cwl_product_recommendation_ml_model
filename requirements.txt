@@ -8,3 +8,7 @@ uvicorn
 python-dotenv
 pydantic
 groq
+aiohttp
+psutil
+openpyxl
+redis

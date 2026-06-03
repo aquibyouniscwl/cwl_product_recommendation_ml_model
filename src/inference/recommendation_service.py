@@ -1,163 +1,349 @@
 from collections import defaultdict
-from typing import List, Dict, Any, Optional
+
+from typing import List
+from typing import Dict
+from typing import Any
+from typing import Optional
+
 from src.models.loader import ModelLoader
-from src.inference.similarity_service import SimilarityService
-from src.inference.rerank_service import RerankService
-from src.inference.ai_rerank_service import AIRerankService
-from src.inference.validation_service import ValidationService
-from src.config.constants import ML_RERANK_WEIGHT, AI_RERANK_WEIGHT
+
+from src.inference.similarity_service import (
+    SimilarityService
+)
+
+from src.inference.rerank_service import (
+    RerankService
+)
+
 from src.utils.logger import logger
 
+
+# =====================================================
+# RECOMMENDATION SERVICE
+# =====================================================
+
 class RecommendationService:
+
     def __init__(self):
+
         self.model_loader = ModelLoader()
-        self.similarity_service = SimilarityService()
-        self.rerank_service = RerankService()
-        self.ai_rerank_service = AIRerankService()
-        self.validation_service = ValidationService()
+
+        self.similarity_service = (
+            SimilarityService()
+        )
+
+        self.rerank_service = (
+            RerankService()
+        )
+
+
+    # =================================================
+    # MAIN RECOMMENDATION PIPELINE
+    # =================================================
 
     def get_recommendations(
+
         self,
+
         cart_products: List[str],
-        enrolled_products: Optional[List[str]] = None,
+
+        enrolled_products: Optional[
+            List[str]
+        ] = None,
+
         top_k: int = 10
+
     ) -> Dict[str, Any]:
-        """
-        Coordinates the entire recommendation process for user cart and enrollment profiles.
-        """
+
+        # -------------------------------------------------
+        # HANDLE EMPTY ENROLLED PRODUCTS
+        # -------------------------------------------------
+
         if enrolled_products is None:
+
             enrolled_products = []
 
-        all_user_products = cart_products + enrolled_products
-        logger.info(f"Generating recommendations for cart={cart_products}, enrolled={enrolled_products}")
+        # -------------------------------------------------
+        # USER PRODUCTS
+        # -------------------------------------------------
 
-        # Ensure models are loaded once
+        all_user_products = (
+
+            cart_products
+            +
+            enrolled_products
+        )
+
+        logger.info(
+
+            f"Generating recommendations "
+            f"for cart={cart_products}, "
+            f"enrolled={enrolled_products}"
+
+        )
+
+        # -------------------------------------------------
+        # LOAD MODELS
+        # -------------------------------------------------
+
         self.model_loader.load_all()
 
-        # Step 1: Retrieve similarity candidate scores
-        aggregated_scores = defaultdict(float)
-        
-        for pid in all_user_products:
-            similar_items = self.similarity_service.get_similar_products(pid, top_k=top_k)
-            for item in similar_items:
-                rec_id = item["id"]
-                # Skip already owned/cart products
-                if rec_id in all_user_products:
-                    continue
-                aggregated_scores[rec_id] += item["score"]
+        # =================================================
+        # STEP 1 — SIMILARITY RETRIEVAL
+        # =================================================
 
-        # Sort aggregated similarity scores
+        aggregated_scores = defaultdict(
+            float
+        )
+
+        for product_id in all_user_products:
+
+            similar_products = (
+
+                self.similarity_service
+                .get_similar_products(
+
+                    product_id,
+
+                    top_k=top_k
+                )
+            )
+
+            for item in similar_products:
+
+                recommendation_id = item["id"]
+
+                # -----------------------------------------
+                # SKIP EXISTING PRODUCTS
+                # -----------------------------------------
+
+                if (
+                    recommendation_id
+                    in
+                    all_user_products
+                ):
+
+                    continue
+
+                aggregated_scores[
+                    recommendation_id
+                ] += item["score"]
+
+        # =================================================
+        # STEP 2 — SORT SIMILARITY SCORES
+        # =================================================
+
         sorted_similarity = sorted(
+
             aggregated_scores.items(),
+
             key=lambda x: x[1],
+
             reverse=True
         )
 
-        # Retrieve metadata for user products
+        # =================================================
+        # STEP 3 — LOAD USER PRODUCT METADATA
+        # =================================================
+
         cart_products_metadata = []
-        for pid in cart_products:
-            meta = self.model_loader.get_product_metadata(pid)
-            if meta:
-                cart_products_metadata.append(meta)
+
+        for product_id in cart_products:
+
+            metadata = (
+
+                self.model_loader
+                .get_product_metadata(
+                    product_id
+                )
+            )
+
+            if metadata:
+
+                cart_products_metadata.append(
+                    metadata
+                )
 
         enrolled_products_metadata = []
-        for pid in enrolled_products:
-            meta = self.model_loader.get_product_metadata(pid)
-            if meta:
-                enrolled_products_metadata.append(meta)
 
-        # Build candidate profiles with attributes
+        for product_id in enrolled_products:
+
+            metadata = (
+
+                self.model_loader
+                .get_product_metadata(
+                    product_id
+                )
+            )
+
+            if metadata:
+
+                enrolled_products_metadata.append(
+                    metadata
+                )
+
+        # =================================================
+        # STEP 4 — BUILD CANDIDATE PROFILES
+        # =================================================
+
         candidates = []
+
         for rec_id, score in sorted_similarity:
-            rec_meta = self.model_loader.get_product_metadata(rec_id)
+
+            rec_meta = (
+
+                self.model_loader
+                .get_product_metadata(
+                    rec_id
+                )
+            )
+
             if not rec_meta:
+
                 continue
 
             candidates.append({
-                "id": rec_meta["id"],
-                "title": rec_meta["title"],
-                "domain": rec_meta["domain"],
-                "difficulty": rec_meta["difficulty"],
-                
-                # ML aggregated score
-                "aggregated_score": round(score, 4),
-                
-                # Semantic metadata for overlap matching
-                "internalTopics": rec_meta.get("internalTopics", []),
-                "technologies": rec_meta.get("technologies", []),
-                "tools": rec_meta.get("tools", []),
-                "tags": rec_meta.get("tags", []),
-                "securityType": rec_meta.get("securityType", []),
-                "learningPath": rec_meta.get("learningPath", []),
-                "popularityScore": rec_meta.get("popularityScore", 50)
+
+                # -----------------------------------------
+                # BASIC INFO
+                # -----------------------------------------
+
+                "id":
+                rec_meta["id"],
+
+                "title":
+                rec_meta["title"],
+
+                "domain":
+                rec_meta["domain"],
+
+                "difficulty":
+                rec_meta["difficulty"],
+
+                # -----------------------------------------
+                # ML SCORES
+                # -----------------------------------------
+
+                "aggregated_score":
+                round(score, 4),
+
+                # -----------------------------------------
+                # SEMANTIC METADATA
+                # -----------------------------------------
+
+                "internalTopics":
+                rec_meta.get(
+                    "internalTopics",
+                    []
+                ),
+
+                "technologies":
+                rec_meta.get(
+                    "technologies",
+                    []
+                ),
+
+                "tools":
+                rec_meta.get(
+                    "tools",
+                    []
+                ),
+
+                "tags":
+                rec_meta.get(
+                    "tags",
+                    []
+                ),
+
+                "securityType":
+                rec_meta.get(
+                    "securityType",
+                    []
+                ),
+
+                "learningPath":
+                rec_meta.get(
+                    "learningPath",
+                    []
+                ),
+
+                "relatedDomains":
+                rec_meta.get(
+                    "relatedDomains",
+                    []
+                ),
+
+                "team":
+                rec_meta.get(
+                    "team",
+                    []
+                ),
+
+                # -----------------------------------------
+                # NUMERICAL FEATURES
+                # -----------------------------------------
+
+                "popularityScore":
+                rec_meta.get(
+                    "popularityScore",
+                    50
+                ),
+
+                "difficultyScore":
+                rec_meta.get(
+                    "difficultyScore",
+                    1
+                ),
+
+                "price":
+                rec_meta.get(
+                    "price",
+                    0
+                )
             })
 
-        # Step 2: Apply semantic rule-based reranking boosts/penalties
-        reranked_candidates = self.rerank_service.rerank_recommendations(
-            recommendations=candidates,
-            cart_products_metadata=cart_products_metadata,
-            enrolled_products_metadata=enrolled_products_metadata
+        # =================================================
+        # STEP 5 — SEMANTIC RERANKING
+        # =================================================
+
+        reranked_candidates = (
+
+            self.rerank_service
+            .rerank_recommendations(
+
+                recommendations=
+                candidates,
+
+                cart_products_metadata=
+                cart_products_metadata,
+
+                enrolled_products_metadata=
+                enrolled_products_metadata
+            )
         )
 
-        # Select Top K candidates
-        top_candidates = reranked_candidates[:top_k]
+        # =================================================
+        # STEP 6 — FINAL TOP K
+        # =================================================
 
-        if not top_candidates:
-            logger.info("No candidates generated for recommendations.")
-            return {
-                "recommendations": [],
-                "llm_validation": {
-                    "validated_recommendations": [],
-                    "overall_explanation": "No recommendation candidates generated."
-                },
-                "ai_reranking": {
-                    "reranked_recommendations": []
-                }
-            }
-
-        # Step 3: Run AI adjustment scores using Groq
-        ai_rerank_output = self.ai_rerank_service.ai_rerank_recommendations(
-            recommendations=top_candidates,
-            cart_products=cart_products_metadata,
-            enrolled_products=enrolled_products_metadata
+        final_recommendations = (
+            reranked_candidates[:top_k]
         )
 
-        # Map AI adjustments to candidates
-        ai_score_map = {}
-        for item in ai_rerank_output.get("reranked_recommendations", []):
-            ai_score_map[item["title"]] = {
-                "ai_adjustment_score": item.get("ai_adjustment_score", 0.0),
-                "ai_reason": item.get("reason", "")
-            }
+        logger.info(
 
-        # Combine ML rerank and AI adjustment scores into final hybrid score
-        for rec in top_candidates:
-            ai_data = ai_score_map.get(rec["title"], {})
-            ai_adj = ai_data.get("ai_adjustment_score", 0.0)
-            
-            rec["ai_adjustment_score"] = round(ai_adj, 4)
-            rec["ai_reason"] = ai_data.get("ai_reason", "")
-            
-            # Hybrid combined score
-            final_score = (rec["reranked_score"] * ML_RERANK_WEIGHT) + (ai_adj * AI_RERANK_WEIGHT)
-            rec["final_score"] = round(final_score, 4)
+            f"Generated "
+            f"{len(final_recommendations)} "
+            f"recommendations."
 
-        # Re-sort candidates by hybrid final_score desc
-        top_candidates = sorted(
-            top_candidates,
-            key=lambda x: x["final_score"],
-            reverse=True
         )
 
-        # Step 4: Perform final LLM Validation and Path explanation
-        llm_output = self.validation_service.validate_and_explain_recommendations(
-            cart_products=cart_products_metadata,
-            enrolled_products=enrolled_products_metadata,
-            recommendations=top_candidates
-        )
+        # =================================================
+        # FINAL RESPONSE
+        # =================================================
 
         return {
-            "recommendations": top_candidates,
-            "llm_validation": llm_output,
-            "ai_reranking": ai_rerank_output
+
+            "recommendations":
+            final_recommendations
         }

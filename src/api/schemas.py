@@ -1,5 +1,8 @@
 from pydantic import BaseModel
-from typing import List, Optional, Dict, Any
+
+from typing import List
+from typing import Optional
+
 
 # =====================================================
 # REQUEST SCHEMA
@@ -27,6 +30,7 @@ class RecommendationRequest(BaseModel):
 
     topK: Optional[int] = 10
 
+
 # =====================================================
 # RECOMMENDATION ITEM
 # =====================================================
@@ -52,22 +56,6 @@ class RecommendationItem(BaseModel):
     aggregated_score: float
 
     reranked_score: float
-
-    # -------------------------------------------------
-    # AI RERANKING
-    # -------------------------------------------------
-
-    ai_adjustment_score: Optional[
-        float
-    ] = 0
-
-    final_score: Optional[
-        float
-    ] = 0
-
-    ai_reason: Optional[
-        str
-    ] = ""
 
     # -------------------------------------------------
     # SEMANTIC METADATA
@@ -97,21 +85,30 @@ class RecommendationItem(BaseModel):
         List[str]
     ] = []
 
+    relatedDomains: Optional[
+        List[str]
+    ] = []
+
+    team: Optional[
+        List[str]
+    ] = []
+
+    # -------------------------------------------------
+    # NUMERICAL FEATURES
+    # -------------------------------------------------
+
     popularityScore: Optional[
         int
     ] = 0
 
-# =====================================================
-# LLM VALIDATION
-# =====================================================
+    difficultyScore: Optional[
+        int
+    ] = 0
 
-class LLMValidation(BaseModel):
+    price: Optional[
+        int
+    ] = 0
 
-    validated_recommendations: List[
-        Dict[str, Any]
-    ]
-
-    overall_explanation: str
 
 # =====================================================
 # FINAL RESPONSE
@@ -121,11 +118,4 @@ class RecommendationResponse(BaseModel):
 
     recommendations: List[
         RecommendationItem
-    ]
-
-    llm_validation: LLMValidation
-
-    ai_reranking: Dict[
-        str,
-        Any
     ]

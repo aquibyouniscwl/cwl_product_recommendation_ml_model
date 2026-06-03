@@ -1,109 +1,341 @@
 import os
 import json
 import joblib
+
 import numpy as np
-from typing import Dict, Any, Optional, List
-from src.config.settings import settings
-from src.utils.logger import logger
+
+from typing import Dict
+from typing import Any
+from typing import Optional
+from typing import List
+
+from src.config.settings import (
+    settings
+)
+
+from src.utils.logger import (
+    logger
+)
+
+
+# =====================================================
+# MODEL LOADER (SINGLETON)
+# =====================================================
 
 class ModelLoader:
-    _instance: Optional['ModelLoader'] = None
 
-    def __new__(cls, *args, **kwargs):
-        if not cls._instance:
-            cls._instance = super(ModelLoader, cls).__new__(cls, *args, **kwargs)
+    _instance = None
+
+
+    # =================================================
+    # SINGLETON INSTANCE
+    # =================================================
+
+    def __new__(cls):
+
+        if cls._instance is None:
+
+            cls._instance = super(
+                ModelLoader,
+                cls
+            ).__new__(cls)
+
             cls._instance._initialized = False
+
         return cls._instance
 
+
+    # =================================================
+    # INITIALIZE
+    # =================================================
+
     def __init__(self):
+
         if self._initialized:
+
             return
-        
-        self.similarity_matrix: Optional[np.ndarray] = None
-        self.metadata: Optional[List[Dict[str, Any]]] = None
-        self.product_vectors: Optional[np.ndarray] = None
-        self.kmeans_model: Optional[Any] = None
-        self.encoders: Dict[str, Any] = {}
-        self.product_id_to_index: Dict[str, int] = {}
+
+        # -------------------------------------------------
+        # MODEL ARTIFACTS
+        # -------------------------------------------------
+
+        self.similarity_matrix = None
+
+        self.product_vectors = None
+
+        self.metadata = None
+
+        self.kmeans_model = None
+
+        self.encoders = {}
+
+        self.product_id_to_index = {}
+
         self._initialized = True
 
-    def load_all(self, force: bool = False) -> None:
-        """
-        Loads all model assets and encoders into memory.
-        If force=True, reloads even if already loaded.
-        """
-        if self.similarity_matrix is not None and not force:
-            logger.info("Models already loaded in memory.")
+
+    # =================================================
+    # LOAD ALL MODELS
+    # =================================================
+
+    def load_all(
+
+        self,
+
+        force: bool = False
+
+    ) -> None:
+
+        # -------------------------------------------------
+        # AVOID RELOADING
+        # -------------------------------------------------
+
+        if (
+
+            self.similarity_matrix
+            is not None
+
+            and
+
+            not force
+
+        ):
+
+            logger.info(
+                "Models already loaded."
+            )
+
             return
 
-        logger.info("========================================")
-        logger.info("LOADING CENTRALIZED MODEL REGISTRY")
-        logger.info("========================================")
+        logger.info(
+            "========================================"
+        )
 
-        # 1. Load Similarity Matrix
-        sim_path = settings.similarity_matrix_path
-        if os.path.exists(sim_path):
-            self.similarity_matrix = np.load(sim_path)
-            logger.info(f"Loaded similarity matrix from {sim_path}")
+        logger.info(
+            "LOADING MODEL REGISTRY"
+        )
+
+        logger.info(
+            "========================================"
+        )
+
+        # =================================================
+        # 1. LOAD SIMILARITY MATRIX
+        # =================================================
+
+        if os.path.exists(
+
+            settings.SIMILARITY_MATRIX_PATH
+
+        ):
+
+            self.similarity_matrix = np.load(
+
+                settings.SIMILARITY_MATRIX_PATH
+            )
+
+            logger.info(
+                "Similarity matrix loaded."
+            )
+
         else:
-            logger.warning(f"Similarity matrix not found at {sim_path}")
 
-        # 2. Load Product Vectors
-        vec_path = settings.product_vectors_path
-        if os.path.exists(vec_path):
-            self.product_vectors = np.load(vec_path)
-            logger.info(f"Loaded product vectors from {vec_path}")
+            logger.warning(
+                "Similarity matrix not found."
+            )
+
+        # =================================================
+        # 2. LOAD PRODUCT VECTORS
+        # =================================================
+
+        if os.path.exists(
+
+            settings.PRODUCT_VECTORS_PATH
+
+        ):
+
+            self.product_vectors = np.load(
+
+                settings.PRODUCT_VECTORS_PATH
+            )
+
+            logger.info(
+                "Product vectors loaded."
+            )
+
         else:
-            logger.warning(f"Product vectors not found at {vec_path}")
 
-        # 3. Load Metadata
-        meta_path = settings.metadata_path
-        if os.path.exists(meta_path):
-            with open(meta_path, "r", encoding="utf-8") as f:
-                self.metadata = json.load(f)
-            logger.info(f"Loaded product metadata from {meta_path}")
-            
-            # Recreate product_id_to_index mapping
+            logger.warning(
+                "Product vectors not found."
+            )
+
+        # =================================================
+        # 3. LOAD METADATA
+        # =================================================
+
+        if os.path.exists(
+
+            settings.METADATA_PATH
+
+        ):
+
+            with open(
+
+                settings.METADATA_PATH,
+
+                "r",
+
+                encoding="utf-8"
+
+            ) as file:
+
+                self.metadata = json.load(
+                    file
+                )
+
+            logger.info(
+                "Metadata loaded."
+            )
+
+            # ---------------------------------------------
+            # CREATE FAST LOOKUP
+            # ---------------------------------------------
+
             self.product_id_to_index = {
-                product["id"]: idx for idx, product in enumerate(self.metadata)
+
+                product["id"]: index
+
+                for index, product
+                in enumerate(self.metadata)
             }
-            logger.info("Product ID mapping created successfully.")
-        else:
-            logger.warning(f"Metadata not found at {meta_path}")
 
-        # 4. Load Encoders
+            logger.info(
+                "Product ID mapping created."
+            )
+
+        else:
+
+            logger.warning(
+                "Metadata not found."
+            )
+
+        # =================================================
+        # 4. LOAD ENCODERS
+        # =================================================
+
         encoder_names = [
-            "team_encoder", "security_encoder", "topics_encoder",
-            "tags_encoder", "technologies_encoder", "tools_encoder",
-            "related_domains_encoder", "learning_path_encoder",
-            "domain_encoder", "scaler"
+
+            "team_encoder",
+
+            "security_encoder",
+
+            "topics_encoder",
+
+            "tags_encoder",
+
+            "technologies_encoder",
+
+            "tools_encoder",
+
+            "related_domains_encoder",
+
+            "learning_path_encoder",
+
+            "domain_encoder",
+
+            "scaler"
         ]
-        
-        for name in encoder_names:
-            enc_path = os.path.join(settings.MODELS_DIR, f"{name}.pkl")
-            if os.path.exists(enc_path):
-                self.encoders[name] = joblib.load(enc_path)
-                logger.info(f"Loaded encoder '{name}' from {enc_path}")
+
+        for encoder_name in encoder_names:
+
+            encoder_path = os.path.join(
+
+                settings.MODELS_DIR,
+
+                f"{encoder_name}.pkl"
+            )
+
+            if os.path.exists(
+                encoder_path
+            ):
+
+                self.encoders[
+                    encoder_name
+                ] = joblib.load(
+                    encoder_path
+                )
+
+                logger.info(
+
+                    f"{encoder_name} loaded."
+
+                )
+
             else:
-                logger.warning(f"Encoder file '{name}' not found at {enc_path}")
 
-        # 5. Load KMeans Model
-        kmeans_path = settings.kmeans_model_path
-        if os.path.exists(kmeans_path):
-            self.kmeans_model = joblib.load(kmeans_path)
-            logger.info(f"Loaded KMeans clustering model from {kmeans_path}")
+                logger.warning(
+
+                    f"{encoder_name} missing."
+
+                )
+
+        # =================================================
+        # 5. LOAD KMEANS MODEL
+        # =================================================
+
+        if os.path.exists(
+
+            settings.KMEANS_MODEL_PATH
+
+        ):
+
+            self.kmeans_model = joblib.load(
+
+                settings.KMEANS_MODEL_PATH
+            )
+
+            logger.info(
+                "KMeans model loaded."
+            )
+
         else:
-            logger.info("KMeans clustering model not found (optional).")
 
-        logger.info("Centralized model loading complete.\n")
+            logger.warning(
+                "KMeans model not found."
+            )
 
-    def get_product_metadata(self, product_id: str) -> Optional[Dict[str, Any]]:
-        """
-        O(1) lookup of metadata by product ID.
-        """
-        if not self.metadata:
+        logger.info(
+            "Model registry loading complete."
+        )
+
+
+    # =================================================
+    # GET PRODUCT METADATA
+    # =================================================
+
+    def get_product_metadata(
+
+        self,
+
+        product_id: str
+
+    ) -> Optional[Dict[str, Any]]:
+
+        if self.metadata is None:
+
             return None
-        idx = self.product_id_to_index.get(product_id)
-        if idx is not None and idx < len(self.metadata):
-            return self.metadata[idx]
-        return None
+
+        product_index = (
+
+            self.product_id_to_index.get(
+                product_id
+            )
+        )
+
+        if product_index is None:
+
+            return None
+
+        return self.metadata[
+            product_index
+        ]

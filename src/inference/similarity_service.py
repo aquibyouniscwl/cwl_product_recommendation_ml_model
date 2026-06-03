@@ -1,52 +1,195 @@
-from typing import List, Dict, Any
+from typing import List
+from typing import Dict
+from typing import Any
+
 import numpy as np
-from src.models.loader import ModelLoader
-from src.utils.logger import logger
+
+from src.models.loader import (
+    ModelLoader
+)
+
+from src.utils.logger import (
+    logger
+)
+
+
+# =====================================================
+# SIMILARITY SERVICE
+# =====================================================
 
 class SimilarityService:
-    def __init__(self):
-        self.model_loader = ModelLoader()
 
-    def get_similar_products(self, product_id: str, top_k: int = 5) -> List[Dict[str, Any]]:
-        """
-        Given a product_id, retrieves the most similar products using the similarity matrix from ModelLoader.
-        """
-        # Ensure model registry is loaded in memory
+
+    # =================================================
+    # INITIALIZE
+    # =================================================
+
+    def __init__(self):
+
+        self.model_loader = (
+            ModelLoader()
+        )
+
+
+    # =================================================
+    # GET SIMILAR PRODUCTS
+    # =================================================
+
+    def get_similar_products(
+
+        self,
+
+        product_id: str,
+
+        top_k: int = 5
+
+    ) -> List[Dict[str, Any]]:
+
+        # -------------------------------------------------
+        # ENSURE MODELS ARE LOADED
+        # -------------------------------------------------
+
         self.model_loader.load_all()
 
-        similarity_matrix = self.model_loader.similarity_matrix
-        metadata = self.model_loader.metadata
-        product_id_to_index = self.model_loader.product_id_to_index
+        # -------------------------------------------------
+        # FETCH LOADED ARTIFACTS
+        # -------------------------------------------------
 
-        if similarity_matrix is None or metadata is None:
-            logger.error("Similarity matrix or metadata is not loaded.")
+        similarity_matrix = (
+            self.model_loader.similarity_matrix
+        )
+
+        metadata = (
+            self.model_loader.metadata
+        )
+
+        product_id_to_index = (
+
+            self.model_loader
+            .product_id_to_index
+        )
+
+        # -------------------------------------------------
+        # VALIDATE LOADED MODELS
+        # -------------------------------------------------
+
+        if similarity_matrix is None:
+
+            logger.error(
+                "Similarity matrix not loaded."
+            )
+
             return []
+
+        if metadata is None:
+
+            logger.error(
+                "Metadata not loaded."
+            )
+
+            return []
+
+        # -------------------------------------------------
+        # VALIDATE PRODUCT ID
+        # -------------------------------------------------
 
         if product_id not in product_id_to_index:
-            logger.warning(f"Product ID '{product_id}' not found in metadata index.")
+
+            logger.warning(
+
+                f"Product ID "
+                f"'{product_id}' "
+                f"not found."
+
+            )
+
             return []
 
-        product_index = product_id_to_index[product_id]
-        similarity_scores = similarity_matrix[product_index]
+        # -------------------------------------------------
+        # FETCH PRODUCT INDEX
+        # -------------------------------------------------
 
-        # Sort indices by highest similarity score
-        sorted_indices = np.argsort(similarity_scores)[::-1]
+        product_index = (
+
+            product_id_to_index[
+                product_id
+            ]
+        )
+
+        # -------------------------------------------------
+        # GET SIMILARITY SCORES
+        # -------------------------------------------------
+
+        similarity_scores = (
+
+            similarity_matrix[
+                product_index
+            ]
+        )
+
+        # -------------------------------------------------
+        # SORT HIGHEST SIMILARITIES
+        # -------------------------------------------------
+
+        sorted_indices = np.argsort(
+
+            similarity_scores
+
+        )[::-1]
+
+        # -------------------------------------------------
+        # BUILD RECOMMENDATIONS
+        # -------------------------------------------------
 
         recommendations = []
-        for idx in sorted_indices:
-            # Skip the query product itself
-            if idx == product_index:
+
+        for index in sorted_indices:
+
+            # ---------------------------------------------
+            # SKIP SAME PRODUCT
+            # ---------------------------------------------
+
+            if index == product_index:
+
                 continue
 
+            product_metadata = metadata[
+                index
+            ]
+
             recommendations.append({
-                "id": metadata[idx]["id"],
-                "title": metadata[idx]["title"],
-                "score": float(similarity_scores[idx]),
-                "domain": metadata[idx]["domain"],
-                "difficulty": metadata[idx]["difficulty"]
+
+                "id":
+                product_metadata["id"],
+
+                "title":
+                product_metadata["title"],
+
+                "score":
+                round(
+                    float(
+                        similarity_scores[index]
+                    ),
+                    4
+                ),
+
+                "domain":
+                product_metadata["domain"],
+
+                "difficulty":
+                product_metadata["difficulty"]
             })
 
+            # ---------------------------------------------
+            # LIMIT TOP K
+            # ---------------------------------------------
+
             if len(recommendations) >= top_k:
+
                 break
+
+        # -------------------------------------------------
+        # RETURN RESULTS
+        # -------------------------------------------------
 
         return recommendations

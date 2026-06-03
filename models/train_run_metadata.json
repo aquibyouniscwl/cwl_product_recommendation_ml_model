@@ -1,0 +1,9 @@
+{
+  "trained_at": "2026-05-30T12:02:25.803502",
+  "vector_shape": [
+    29,
+    411
+  ],
+  "total_products": 29,
+  "has_clustering_model": true
+}

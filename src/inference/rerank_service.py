@@ -1,126 +1,528 @@
 from collections import defaultdict
-from typing import List, Dict, Any, Optional
-from src.config.constants import DOMAIN_BOOSTS, PROGRESSION_MAP, DEFAULT_POPULARITY_SCORE
+
+from typing import List
+from typing import Dict
+from typing import Any
+from typing import Optional
+
+from src.config.constants import (
+    DOMAIN_BOOSTS,
+    PROGRESSION_MAP,
+    SAME_DOMAIN_BOOST,
+    SECURITY_ALIGNMENT_BOOST,
+    TOPIC_OVERLAP_BOOST,
+    LEARNING_PATH_BOOST,
+    CLOUD_SPECIALIZATION_BOOST,
+    DIFFICULTY_PROGRESSION_BOOST,
+    POPULARITY_BOOST,
+    DIVERSITY_PENALTY,
+    DEFAULT_POPULARITY_SCORE
+)
+
+
+# =====================================================
+# RERANK SERVICE
+# =====================================================
 
 class RerankService:
-    def semantic_overlap_score(self, recommendation: Dict[str, Any], user_product: Dict[str, Any]) -> float:
-        """
-        Calculates similarity overlap score based on topics, technologies, tools, tags, and security types.
-        """
+
+
+    # =================================================
+    # SEMANTIC OVERLAP SCORE
+    # =================================================
+
+    def semantic_overlap_score(
+
+        self,
+
+        recommendation: Dict[str, Any],
+
+        user_product: Dict[str, Any]
+
+    ) -> float:
+
         score = 0.0
 
-        # Topic overlap (0.35 weight per overlap)
-        rec_topics = set(recommendation.get("internalTopics", []))
-        user_topics = set(user_product.get("internalTopics", []))
-        score += len(rec_topics.intersection(user_topics)) * 0.35
+        # -------------------------------------------------
+        # INTERNAL TOPICS
+        # -------------------------------------------------
 
-        # Technologies overlap (0.20 weight per overlap)
-        rec_tech = set(recommendation.get("technologies", []))
-        user_tech = set(user_product.get("technologies", []))
-        score += len(rec_tech.intersection(user_tech)) * 0.20
+        rec_topics = set(
 
-        # Tools overlap (0.15 weight per overlap)
-        rec_tools = set(recommendation.get("tools", []))
-        user_tools = set(user_product.get("tools", []))
-        score += len(rec_tools.intersection(user_tools)) * 0.15
+            recommendation.get(
+                "internalTopics",
+                []
+            )
+        )
 
-        # Tags overlap (0.10 weight per overlap)
-        rec_tags = set(recommendation.get("tags", []))
-        user_tags = set(user_product.get("tags", []))
-        score += len(rec_tags.intersection(user_tags)) * 0.10
+        user_topics = set(
 
-        # Security Type overlap (0.30 weight per overlap)
-        rec_security = set(recommendation.get("securityType", []))
-        user_security = set(user_product.get("securityType", []))
-        score += len(rec_security.intersection(user_security)) * 0.30
+            user_product.get(
+                "internalTopics",
+                []
+            )
+        )
+
+        topic_overlap = len(
+
+            rec_topics.intersection(
+                user_topics
+            )
+        )
+
+        score += (
+            topic_overlap
+            *
+            TOPIC_OVERLAP_BOOST
+            *
+            0.10
+        )
+
+        # -------------------------------------------------
+        # TECHNOLOGIES
+        # -------------------------------------------------
+
+        rec_technologies = set(
+
+            recommendation.get(
+                "technologies",
+                []
+            )
+        )
+
+        user_technologies = set(
+
+            user_product.get(
+                "technologies",
+                []
+            )
+        )
+
+        technology_overlap = len(
+
+            rec_technologies.intersection(
+                user_technologies
+            )
+        )
+
+        score += (
+            technology_overlap
+            *
+            0.20
+        )
+
+        # -------------------------------------------------
+        # TOOLS
+        # -------------------------------------------------
+
+        rec_tools = set(
+
+            recommendation.get(
+                "tools",
+                []
+            )
+        )
+
+        user_tools = set(
+
+            user_product.get(
+                "tools",
+                []
+            )
+        )
+
+        tool_overlap = len(
+
+            rec_tools.intersection(
+                user_tools
+            )
+        )
+
+        score += (
+            tool_overlap
+            *
+            0.15
+        )
+
+        # -------------------------------------------------
+        # TAGS
+        # -------------------------------------------------
+
+        rec_tags = set(
+
+            recommendation.get(
+                "tags",
+                []
+            )
+        )
+
+        user_tags = set(
+
+            user_product.get(
+                "tags",
+                []
+            )
+        )
+
+        tag_overlap = len(
+
+            rec_tags.intersection(
+                user_tags
+            )
+        )
+
+        score += (
+            tag_overlap
+            *
+            0.10
+        )
 
         return score
 
+
+    # =================================================
+    # MAIN RERANKING
+    # =================================================
+
     def rerank_recommendations(
+
         self,
-        recommendations: List[Dict[str, Any]],
-        cart_products_metadata: List[Dict[str, Any]],
-        enrolled_products_metadata: Optional[List[Dict[str, Any]]] = None
+
+        recommendations: List[
+            Dict[str, Any]
+        ],
+
+        cart_products_metadata: List[
+            Dict[str, Any]
+        ],
+
+        enrolled_products_metadata: Optional[
+            List[Dict[str, Any]]
+        ] = None
+
     ) -> List[Dict[str, Any]]:
-        """
-        Applies a multi-layered rule-based rerank score adjustment logic to candidate recommendations.
-        """
+
+        # -------------------------------------------------
+        # HANDLE EMPTY ENROLLED PRODUCTS
+        # -------------------------------------------------
+
         if enrolled_products_metadata is None:
+
             enrolled_products_metadata = []
 
-        user_products = cart_products_metadata + enrolled_products_metadata
-        domain_counter = defaultdict(int)
+        # -------------------------------------------------
+        # USER PRODUCTS
+        # -------------------------------------------------
+
+        user_products = (
+
+            cart_products_metadata
+            +
+            enrolled_products_metadata
+        )
+
+        # -------------------------------------------------
+        # DOMAIN DIVERSITY TRACKING
+        # -------------------------------------------------
+
+        domain_counter = defaultdict(
+            int
+        )
+
         reranked = []
 
-        for rec in recommendations:
-            score = rec["aggregated_score"]
-            rec_domain = rec["domain"]
-            rec_difficulty = rec["difficulty"]
+        # =================================================
+        # PROCESS RECOMMENDATIONS
+        # =================================================
 
-            # 1. Semantic Overlap Score
-            for user_product in user_products:
-                score += self.semantic_overlap_score(rec, user_product)
+        for recommendation in recommendations:
 
-            # 2. Same Domain Boost
-            for user_product in user_products:
-                if rec_domain == user_product["domain"]:
-                    score += DOMAIN_BOOSTS.get(rec_domain, 0.15)
+            score = recommendation[
+                "aggregated_score"
+            ]
 
-            # 3. Offensive / Defensive Alignment
+            recommendation_domain = (
+                recommendation["domain"]
+            )
+
+            recommendation_difficulty = (
+                recommendation["difficulty"]
+            )
+
+            # =================================================
+            # 1. SEMANTIC OVERLAP
+            # =================================================
+
             for user_product in user_products:
-                user_security_types = user_product.get("securityType", [])
-                rec_security_types = rec.get("securityType", [])
-                overlap = set(user_security_types).intersection(set(rec_security_types))
+
+                score += (
+                    self.semantic_overlap_score(
+
+                        recommendation,
+
+                        user_product
+                    )
+                )
+
+            # =================================================
+            # 2. SAME DOMAIN BOOST
+            # =================================================
+
+            for user_product in user_products:
+
+                if (
+
+                    recommendation_domain
+                    ==
+                    user_product.get("domain")
+
+                ):
+
+                    score += (
+
+                        SAME_DOMAIN_BOOST
+
+                        +
+
+                        DOMAIN_BOOSTS.get(
+                            recommendation_domain,
+                            0.15
+                        )
+                    )
+
+            # =================================================
+            # 3. SECURITY ALIGNMENT
+            # =================================================
+
+            for user_product in user_products:
+
+                user_security = set(
+
+                    user_product.get(
+                        "securityType",
+                        []
+                    )
+                )
+
+                recommendation_security = set(
+
+                    recommendation.get(
+                        "securityType",
+                        []
+                    )
+                )
+
+                overlap = (
+
+                    user_security.intersection(
+                        recommendation_security
+                    )
+                )
+
                 if overlap:
-                    score += 0.30
 
-            # 4. Learning Progression
-            rec_level = PROGRESSION_MAP.get(rec_difficulty, 1)
+                    score += (
+                        SECURITY_ALIGNMENT_BOOST
+                    )
+
+            # =================================================
+            # 4. LEARNING PROGRESSION
+            # =================================================
+
+            recommendation_level = (
+
+                PROGRESSION_MAP.get(
+                    recommendation_difficulty,
+                    1
+                )
+            )
+
             for user_product in user_products:
-                user_level = PROGRESSION_MAP.get(user_product.get("difficulty"), 1)
-                if rec_level == user_level:
+
+                user_level = (
+
+                    PROGRESSION_MAP.get(
+
+                        user_product.get(
+                            "difficulty"
+                        ),
+
+                        1
+                    )
+                )
+
+                # Same Level
+
+                if recommendation_level == user_level:
+
                     score += 0.15
-                elif rec_level == user_level + 1:
-                    score += 0.25
-                elif rec_level > user_level + 1:
-                    score -= 0.20
 
-            # 5. Learning Path Continuity
+                # Natural Progression
+
+                elif (
+
+                    recommendation_level
+                    ==
+                    user_level + 1
+
+                ):
+
+                    score += (
+                        DIFFICULTY_PROGRESSION_BOOST
+                    )
+
+                # Too Difficult
+
+                elif (
+
+                    recommendation_level
+                    >
+                    user_level + 1
+
+                ):
+
+                    score -= 0.25
+
+            # =================================================
+            # 5. LEARNING PATH CONTINUITY
+            # =================================================
+
             for user_product in user_products:
-                learning_path = user_product.get("learningPath", [])
-                if rec["id"] in learning_path:
-                    score += 0.50
 
-            # 6. Cloud Specialization
+                learning_path = (
+
+                    user_product.get(
+                        "learningPath",
+                        []
+                    )
+                )
+
+                if (
+
+                    recommendation["id"]
+                    in
+                    learning_path
+
+                ):
+
+                    score += (
+                        LEARNING_PATH_BOOST
+                    )
+
+            # =================================================
+            # 6. CLOUD SPECIALIZATION
+            # =================================================
+
             for user_product in user_products:
-                if user_product.get("domain") == "cloud-security" and rec_domain == "cloud-security":
-                    score += 0.35
 
-            # 7. Generic Beginner Penalty
-            if rec_domain == "blue-team" and rec_difficulty == "beginner":
+                if (
+
+                    user_product.get("domain")
+                    ==
+                    "cloud-security"
+
+                    and
+
+                    recommendation_domain
+                    ==
+                    "cloud-security"
+
+                ):
+
+                    score += (
+                        CLOUD_SPECIALIZATION_BOOST
+                    )
+
+            # =================================================
+            # 7. GENERIC BEGINNER PENALTY
+            # =================================================
+
+            if (
+
+                recommendation_domain
+                ==
+                "blue-team"
+
+                and
+
+                recommendation_difficulty
+                ==
+                "beginner"
+
+            ):
+
                 score -= 0.15
 
-            # 8. Diversity Control
-            domain_counter[rec_domain] += 1
-            if domain_counter[rec_domain] > 3:
-                score -= 0.25
+            # =================================================
+            # 8. DIVERSITY CONTROL
+            # =================================================
 
-            # 9. Popularity Boost
-            popularity = rec.get("popularityScore", DEFAULT_POPULARITY_SCORE)
-            popularity_boost = (popularity / 100) * 0.05
-            score += popularity_boost
+            domain_counter[
+                recommendation_domain
+            ] += 1
 
-            # 10. Score Normalization
+            if (
+
+                domain_counter[
+                    recommendation_domain
+                ] > 3
+
+            ):
+
+                score -= DIVERSITY_PENALTY
+
+            # =================================================
+            # 9. POPULARITY BOOST
+            # =================================================
+
+            popularity = recommendation.get(
+
+                "popularityScore",
+
+                DEFAULT_POPULARITY_SCORE
+            )
+
+            popularity_score = (
+
+                (popularity / 100)
+                *
+                POPULARITY_BOOST
+            )
+
+            score += popularity_score
+
+            # =================================================
+            # 10. SCORE NORMALIZATION
+            # =================================================
+
             if score < 0:
+
                 score = 0.0
 
-            rec["reranked_score"] = round(score, 4)
-            reranked.append(rec)
+            # =================================================
+            # SAVE FINAL SCORE
+            # =================================================
 
-        # Final Sort by reranked_score desc
+            recommendation[
+                "reranked_score"
+            ] = round(score, 4)
+
+            reranked.append(
+                recommendation
+            )
+
+        # =================================================
+        # FINAL SORTING
+        # =================================================
+
         reranked = sorted(
+
             reranked,
-            key=lambda x: x["reranked_score"],
+
+            key=lambda x: x[
+                "reranked_score"
+            ],
+
             reverse=True
         )
 
