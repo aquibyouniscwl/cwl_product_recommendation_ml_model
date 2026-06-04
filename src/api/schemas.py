@@ -1,6 +1,5 @@
 from pydantic import BaseModel
-from typing import List
-from typing import Optional
+from typing import List, Optional
 
 
 # =====================================================
@@ -69,3 +68,8 @@ class RecommendationResponse(BaseModel):
     # -------------------------------------------------
     cache_status: str
     cache_key: str
+    # -------------------------------------------------
+    # LRU CACHE STATS
+    # -------------------------------------------------
+    lru_hits: Optional[int] = 0
+    lru_misses: Optional[int] = 0
