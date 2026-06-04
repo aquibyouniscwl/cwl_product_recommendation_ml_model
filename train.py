@@ -2,6 +2,7 @@ import sys
 from src.training.pipeline import TrainingPipeline
 from src.utils.logger import logger
 
+
 def main():
     """
     Orchestrator script to execute offline retraining.
@@ -13,6 +14,7 @@ def main():
     except Exception as e:
         logger.error(f"Training pipeline run failed: {e}")
         sys.exit(1)
+
 
 if __name__ == "__main__":
     main()

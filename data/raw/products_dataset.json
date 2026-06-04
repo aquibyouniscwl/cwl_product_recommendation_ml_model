@@ -1,6 +1,6 @@
 [
   {
-    "id": "ocwai",
+    "id": "product_1",
     "certCode": "OCO-AI",
     "title": "Offensive Cyber Operations with AI",
     "shortTitle": "OCWAI",
@@ -55,7 +55,7 @@
     "icon": "🤖"
   },
   {
-    "id": "arta",
+    "id": "product_2",
     "certCode": "C|ARTA",
     "title": "API Red Team Analyst",
     "shortTitle": "ARTA",
@@ -114,7 +114,7 @@
     "icon": "🔌"
   },
   {
-    "id": "wrta",
+    "id": "product_3",
     "certCode": "C|WRTA",
     "title": "Web Red Team Analyst",
     "shortTitle": "WRTA",
@@ -172,7 +172,7 @@
     "icon": "🕸️"
   },
   {
-    "id": "adrts",
+    "id": "product_4",
     "certCode": "C|ADRTS",
     "title": "AD Red Team Specialist",
     "shortTitle": "ADRTS",
@@ -233,7 +233,7 @@
     "icon": "🏰"
   },
   {
-    "id": "lms",
+    "id": "product_5",
     "certCode": "C|ELMS",
     "title": "Lateral Movement Specialist",
     "shortTitle": "LMS",
@@ -290,7 +290,7 @@
     "icon": "🔀"
   },
   {
-    "id": "rta",
+    "id": "product_6",
     "certCode": "C|RTA",
     "title": "Red Team Analyst",
     "shortTitle": "RTA",
@@ -347,7 +347,7 @@
     "icon": "🎯"
   },
   {
-    "id": "rts",
+    "id": "product_7",
     "certCode": "C|RTS",
     "title": "Red Team Specialist",
     "shortTitle": "RTS",
@@ -404,7 +404,7 @@
     "icon": "🧪"
   },
   {
-    "id": "rtid",
+    "id": "product_8",
     "certCode": "C|RTID",
     "title": "Red Team Infra Dev",
     "shortTitle": "RTID",
@@ -463,7 +463,7 @@
     "icon": "🏗️"
   },
   {
-    "id": "sco",
+    "id": "product_9",
     "certCode": "C|SCO",
     "title": "Stealth Cyber Operator",
     "shortTitle": "SCO",
@@ -521,7 +521,7 @@
     "icon": "👻"
   },
   {
-    "id": "btf",
+    "id": "product_10",
     "certCode": "C|BTF",
     "title": "Blue Team Fundamentals",
     "shortTitle": "BTF",
@@ -577,7 +577,7 @@
     "icon": "🛡️"
   },
   {
-    "id": "cda",
+    "id": "product_11",
     "certCode": "C|CDA",
     "title": "Cyber Defence Analyst",
     "shortTitle": "CDA",
@@ -633,7 +633,7 @@
     "icon": "🔍"
   },
   {
-    "id": "ptf",
+    "id": "product_12",
     "certCode": "C|PTF",
     "title": "Purple Team Fundamentals",
     "shortTitle": "PTF",
@@ -686,7 +686,7 @@
     "icon": "🔮"
   },
   {
-    "id": "pia",
+    "id": "product_13",
     "certCode": "C|PIA",
     "title": "Process Injection Analyst",
     "shortTitle": "PIA",
@@ -744,7 +744,7 @@
     "icon": "💉"
   },
   {
-    "id": "pta",
+    "id": "product_14",
     "certCode": "C|PTA",
     "title": "Purple Team Analyst",
     "shortTitle": "PTA",
@@ -801,7 +801,7 @@
     "icon": "⚗️"
   },
   {
-    "id": "azrts",
+    "id": "product_15",
     "certCode": "C|AZRTS",
     "title": "Azure Red Team Specialist",
     "shortTitle": "AZRTS",
@@ -858,7 +858,7 @@
     "icon": "☁️"
   },
   {
-    "id": "mcrta",
+    "id": "product_16",
     "certCode": "C|MCRTA",
     "title": "Multi-Cloud Red Team Analyst",
     "shortTitle": "MCRTA",
@@ -920,7 +920,7 @@
     "icon": "🌐"
   },
   {
-    "id": "hmcrts",
+    "id": "product_17",
     "certCode": "C|HMCRTS",
     "title": "Hybrid Multi-Cloud Red Team Specialist",
     "shortTitle": "HMCRTS",
@@ -979,7 +979,7 @@
     "icon": "🔗"
   },
   {
-    "id": "grts",
+    "id": "product_18",
     "certCode": "C|GRTS",
     "title": "Google Red Team Specialist",
     "shortTitle": "GRTS",
@@ -1032,7 +1032,7 @@
     "icon": "🔵"
   },
   {
-    "id": "awrts",
+    "id": "product_19",
     "certCode": "C|AWRTS",
     "title": "AWS Red Team Specialist",
     "shortTitle": "AWRTS",
@@ -1088,7 +1088,7 @@
     "icon": "🟠"
   },
   {
-    "id": "mcbta",
+    "id": "product_20",
     "certCode": "C|MCBTA",
     "title": "Multi Cloud Blue Team Analyst",
     "shortTitle": "MCBTA",
@@ -1148,7 +1148,7 @@
     "icon": "🔵"
   },
   {
-    "id": "opo",
+    "id": "product_21",
     "certCode": "C|OPO",
     "title": "Offensive Phishing Operations",
     "shortTitle": "OPO",
@@ -1206,7 +1206,7 @@
     "icon": "🎣"
   },
   {
-    "id": "csa",
+    "id": "product_22",
     "certCode": "C|CSA",
     "title": "Cyber Security Analyst",
     "shortTitle": "CSA",
@@ -1264,7 +1264,7 @@
     "icon": "📊"
   },
   {
-    "id": "cse",
+    "id": "product_23",
     "certCode": "C|CSE",
     "title": "Cyber Security Engineer",
     "shortTitle": "CSE",
@@ -1325,7 +1325,7 @@
     "icon": "⚙️"
   },
   {
-    "id": "rtci",
+    "id": "product_24",
     "certCode": "C|RTCI",
     "title": "Red Team CredOps Infiltrator",
     "shortTitle": "RTCI",
@@ -1385,7 +1385,7 @@
     "icon": "🔑"
   },
   {
-    "id": "scas",
+    "id": "product_25",
     "certCode": "C|SCAS",
     "title": "Security Controls Attack Specialist",
     "shortTitle": "SCAS",
@@ -1446,7 +1446,7 @@
     "icon": "🛡️"
   },
   {
-    "id": "wirto",
+    "id": "product_26",
     "certCode": "C|WIRTO",
     "title": "Win Internals Red Team Operator",
     "shortTitle": "WIRTO",
@@ -1504,7 +1504,7 @@
     "icon": "🪟"
   },
   {
-    "id": "edp",
+    "id": "product_27",
     "certCode": "C|EDP",
     "title": "Exploit Development Professional",
     "shortTitle": "EDP",
@@ -1563,7 +1563,7 @@
     "icon": "💥"
   },
   {
-    "id": "drta",
+    "id": "product_28",
     "certCode": "C|DRTA",
     "title": "DevOps Red Team Analyst",
     "shortTitle": "DRTA",
@@ -1623,7 +1623,7 @@
     "icon": "🔧"
   },
   {
-    "id": "k8srta",
+    "id": "product_29",
     "certCode": "C|K8SRTA",
     "title": "K8s Red Team Analyst",
     "shortTitle": "K8SRTA",

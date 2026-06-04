@@ -1,5 +1,6 @@
 from typing import Dict, Any
 
+
 class SimpleMemoryCache:
     def __init__(self):
         self._cache: Dict[str, Any] = {}
@@ -15,5 +16,6 @@ class SimpleMemoryCache:
 
     def clear(self) -> None:
         self._cache.clear()
+
 
 global_cache = SimpleMemoryCache()

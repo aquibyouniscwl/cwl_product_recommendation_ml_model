@@ -22,5 +22,5 @@ FEATURE_WEIGHTS = {
     # -----------------------------------------
     "difficultyScore": 0.8,
     "popularityScore": 0.4,
-    "price": 0.1
+    "price": 0.1,
 }
